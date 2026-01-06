@@ -1,11 +1,11 @@
-<! DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Data Logging - NIBL</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min. css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="logging-styles.css">
 </head>
@@ -31,16 +31,16 @@
         <a class="navbar-item" href="beam-time.html">
           <i class="fas fa-calendar-alt"></i>&nbsp;Beam-Time Request
         </a>
-        <a class="navbar-item active" href="logging. html">
+        <a class="navbar-item active" href="logging.html">
           <i class="fas fa-clipboard-list"></i>&nbsp;Logging
         </a>
-        <a class="navbar-item" href="members. html">
+        <a class="navbar-item" href="members.html">
           <i class="fas fa-users"></i>&nbsp;Members
         </a>
         <a class="navbar-item" href="gallery.html">
           <i class="fas fa-images"></i>&nbsp;Photo Gallery
         </a>
-        <a class="navbar-item" href="about. html">
+        <a class="navbar-item" href="about.html">
           <i class="fas fa-info-circle"></i>&nbsp;About
         </a>
       </div>
@@ -63,10 +63,15 @@
             <input type="password" id="password" class="login-input" placeholder="Password" required>
           </div>
           <button type="submit" class="login-btn">
-            <i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Access Logging System
+            <i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp;ACCESS LOGGING SYSTEM
           </button>
           <div id="errorMessage" class="error-message" style="display: none;"></div>
         </form>
+        
+        <!-- Close Button positioned below the login form -->
+        <button class="close-modal-btn" id="closeModalBtn" type="button">
+          <i class="fas fa-times"></i>&nbsp;&nbsp;Cancel & Go Back
+        </button>
       </div>
     </div>
   </div>
@@ -92,10 +97,10 @@
             <div class="icon-input">
               <select id="operator" class="custom-select" required>
                 <option value="" disabled selected>Select Operator</option>
-                <option value="Mr.  Ritartha Chaki">Mr. Ritartha Chaki</option>
-                <option value="Dr. Kalyan Ghosh">Dr.  Kalyan Ghosh</option>
-                <option value="Dr. Haraprasanna Lenka">Dr.  Haraprasanna Lenka</option>
-                <option value="Dr. Pratap Kumar Sahoo">Dr.  Pratap Kumar Sahoo</option>
+                <option value="Mr.Ritartha Chaki">Mr. Ritartha Chaki</option>
+                <option value="Dr.Kalyan Ghosh">Dr. Kalyan Ghosh</option>
+                <option value="Dr.Haraprasanna Lenka">Dr. Haraprasanna Lenka</option>
+                <option value="Dr.Pratap Kumar Sahoo">Dr. Pratap Kumar Sahoo</option>
               </select>
               <i class="fas fa-user-tie"></i>
             </div>
@@ -210,8 +215,8 @@
 
         <div class="submit-container">
           <button class="submit-btn" type="submit">
-            <i class="fab fa-discord" style="margin-right: 0.5rem;"></i>
-            Send to Discord
+            
+            Update Sheets
           </button>
         </div>
       </form>
@@ -221,9 +226,314 @@
   <!-- Loading Overlay -->
   <div class="loading-overlay" id="loadingOverlay" style="display: none;">
     <div class="spinner"></div>
+    <div class="loading-text">Submitting data...</div>
   </div>
 
   <script src="script.js"></script>
   <script src="logging-script.js"></script>
+
+  <style>
+    /* Modal Background */
+    .modal {
+      position: fixed;
+      top:  0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .modal.is-active {
+      display: flex;
+    }
+
+    /* Modal Content - Larger Size */
+    .modal-content {
+      background:  var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(0, 212, 255, 0.2);
+      border-radius: 25px;
+      padding: 4rem 3rem;
+      max-width: 550px;
+      width: 90%;
+      color: var(--text-primary);
+      box-shadow: var(--shadow-hover);
+      position: relative;
+      min-height: 550px;
+    }
+
+    .login-form {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    .login-title {
+      font-size:  2.5rem;
+      font-weight: 700;
+      color: white;
+      text-align: center;
+      margin-bottom: 3rem;
+      text-shadow:  0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .login-field {
+      margin-bottom: 2.5rem;
+    }
+
+    .login-input {
+      width: 100%;
+      padding:  1.5rem;
+      border: 2px solid rgba(0, 212, 255, 0.2);
+      border-radius: 15px;
+      background: rgba(0, 0, 0, 0.4);
+      color: var(--text-primary);
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+
+    .login-input:focus {
+      outline:  none;
+      border-color:  var(--accent-blue);
+      background: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 0 25px rgba(0, 212, 255, 0.3);
+    }
+
+    .login-input::placeholder {
+      color: var(--text-muted);
+    }
+
+    /* Primary Login Button */
+    .login-btn {
+      background: var(--success-gradient);
+      border: none;
+      border-radius: 50px;
+      color: var(--text-primary);
+      font-size: 1.2rem;
+      font-weight:  700;
+      padding: 1.5rem 3rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      margin-top: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+    }
+
+    .login-btn:hover {
+      transform:  translateY(-3px);
+      box-shadow: 0 15px 35px rgba(0, 212, 255, 0.5);
+    }
+
+    /* Close/Cancel Button - Positioned below login button */
+    .close-modal-btn {
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50px;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      margin-top: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .close-modal-btn:hover {
+      background:  rgba(255, 107, 107, 0.8);
+      border-color: #ff6b6b;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+    }
+
+    .close-modal-btn:active {
+      transform: translateY(0);
+    }
+
+    .error-message {
+      color: #ff6b6b;
+      margin-top: 1.5rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      font-weight: 600;
+      background: rgba(255, 107, 107, 0.1);
+      padding: 1rem;
+      border-radius:  10px;
+      border:  1px solid rgba(255, 107, 107, 0.2);
+      text-align: center;
+    }
+
+    /* Loading Overlay */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background:  rgba(0, 0, 0, 0.8);
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-top: 4px solid var(--accent-blue);
+      border-radius: 50%;
+      animation:  spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+
+    .loading-text {
+      color: var(--text-primary);
+      font-size: 1.1rem;
+      font-weight:  600;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Logout Button */
+    .logout-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--accent-gradient);
+      border: none;
+      border-radius: 25px;
+      color: var(--text-primary);
+      padding: 0.8rem 1.5rem;
+      font-weight: 600;
+      cursor:  pointer;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      z-index: 100;
+    }
+
+    .logout-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(238, 90, 36, 0.4);
+    }
+
+    /* Form Validation Styles */
+    .custom-input.error,
+    .custom-select.error {
+      border-color: #ff6b6b;
+      background: rgba(255, 107, 107, 0.1);
+    }
+
+    .custom-input.valid,
+    .custom-select.valid {
+      border-color:  var(--accent-cyan);
+      background: rgba(29, 209, 161, 0.1);
+    }
+
+    /* Notification Styles */
+    .success-notification,
+    .error-notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      color: var(--text-primary);
+      font-weight: 600;
+      z-index: 1001;
+      transform: translateX(400px);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      min-width: 300px;
+      box-shadow: var(--shadow-hover);
+    }
+
+    .success-notification {
+      background: var(--success-gradient);
+    }
+
+    .error-notification {
+      background: var(--accent-gradient);
+    }
+
+    .success-notification.show,
+    .error-notification.show {
+      transform: translateX(0);
+    }
+
+    .success-notification i,
+    .error-notification i {
+      font-size: 1.2rem;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .modal-content {
+        margin: 1rem;
+        padding: 3rem 2rem;
+        max-width: none;
+        min-height: 500px;
+      }
+
+      .login-title {
+        font-size: 2rem;
+      }
+
+      .login-input {
+        padding: 1.3rem;
+      }
+
+      .login-btn {
+        padding:  1.3rem 2rem;
+        font-size: 1rem;
+      }
+
+      .close-modal-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+      }
+
+      .logout-btn {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin:  1rem auto;
+        display: block;
+        width: fit-content;
+      }
+
+      .success-notification,
+      .error-notification {
+        right: 10px;
+        left: 10px;
+        min-width: auto;
+        transform: translateY(-100px);
+      }
+
+      .success-notification.show,
+      .error-notification.show {
+        transform: translateY(0);
+      }
+    }
+  </style>
 </body>
 </html>

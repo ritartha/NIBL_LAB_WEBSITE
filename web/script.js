@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Mobile menu toggle
-  const navbarBurger = document. getElementById('navbarBurger');
+  const navbarBurger = document.getElementById('navbarBurger');
   const navbarMenu = document.getElementById('navbarMenu');
   
   if (navbarBurger && navbarMenu) {
     navbarBurger.addEventListener('click', function() {
-      navbarBurger.classList. toggle('is-active');
+      navbarBurger.classList.toggle('is-active');
       navbarMenu.classList.toggle('is-active');
     });
   }
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function setActiveNavigation() {
-  const currentPage = window.location.pathname. split('/').pop() || 'index.html';
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   const navItems = document.querySelectorAll('.navbar-item');
   
   navItems.forEach(item => {
@@ -30,14 +30,14 @@ function setActiveNavigation() {
   if (currentPage === 'index.html' || currentPage === '') {
     const homeLink = document.querySelector('.navbar-item[href="index.html"]');
     if (homeLink) {
-      homeLink.classList. add('active');
+      homeLink.classList.add('active');
     }
   }
 }
 
 // Smooth scrolling for anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor. addEventListener('click', function (e) {
+  anchor.addEventListener('click', function (e) {
     e.preventDefault();
     const target = document.querySelector(this.getAttribute('href'));
     if (target) {
