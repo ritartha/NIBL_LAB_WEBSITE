@@ -76,7 +76,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function initializeLoggingForm() {
     const webhookURL = "https://discordapp.com/api/webhooks/1400223474936447016/xI-JrG48H3Riln_Qgnh-NlK62sBzXXdzJcJfZ5Eom5wvzpLAjQ3_FTjprWVM4fEageoq";
-    const sheetWebhookURL = "https://script.google.com/macros/s/AKfycbwmPW7B9fOzxotR3EquWrKugYXHR4xz-R1Gw0ZeJSUwJKxcSYlggGzv6pM4NQcagT3_5w/exec";
+    const sheetWebhookURL = "https://script.google.com/a/macros/niser.ac.in/s/AKfycbxDe-o_3nvQkOMAi67mmxxcW9LBnoozaXgBKUISTX_JdGPeHKxap-7L5GcXkJXWftF1/exec";
+    
 
     // Add logout functionality
     addLogoutFunctionality();
@@ -150,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Send to Discord
         fetch(webhookURL, {
           method:  'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {'Content-Type': 'application/json'},
           body:  JSON.stringify({ embeds: [embed] })
         })
         .then(response => {
@@ -197,7 +198,8 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => {
           hideLoading();
           console.error(error);
-          showErrorMessage("❌ Failed to send message:  " + error.message);
+          showSuccessMessage("✅ Data successfully sent to Discord");
+          showErrorMessage("❌ New Google Sheet will be used. System under development. Failed to Update Old Google Sheet:  " + error.message);
         });
       });
     }

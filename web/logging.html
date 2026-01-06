@@ -9,6 +9,31 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="logging-styles.css">
 </head>
+
+<style>
+  /* View Sheet Button */
+.view-sheet-btn {
+  background: var(--accent-gradient);
+  border: none;
+  border-radius: 50px;
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  font-weight:  700;
+  padding: 1.5rem 3rem;
+  cursor: pointer;
+  transition:  all 0.3s ease;
+  width: 25%;
+  margin-top: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 25px rgba(238, 90, 36, 0.3);
+}
+
+.view-sheet-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(238, 90, 36, 0.5);
+}
+</style>
 <body>
   <!-- Navigation -->
   <nav class="navbar" role="navigation">
@@ -97,10 +122,10 @@
             <div class="icon-input">
               <select id="operator" class="custom-select" required>
                 <option value="" disabled selected>Select Operator</option>
-                <option value="Mr.Ritartha Chaki">Mr. Ritartha Chaki</option>
-                <option value="Dr.Kalyan Ghosh">Dr. Kalyan Ghosh</option>
-                <option value="Dr.Haraprasanna Lenka">Dr. Haraprasanna Lenka</option>
-                <option value="Dr.Pratap Kumar Sahoo">Dr. Pratap Kumar Sahoo</option>
+                <option value="Mr.Ritartha Chaki">Mr.Ritartha Chaki</option>
+                <option value="Dr.Kalyan Ghosh">Dr.Kalyan Ghosh</option>
+                <option value="Dr.Haraprasanna Lenka">Dr.Haraprasanna Lenka</option>
+                <option value="Dr.Pratap Kumar Sahoo">Dr.Pratap Kumar Sahoo</option>
               </select>
               <i class="fas fa-user-tie"></i>
             </div>
@@ -213,12 +238,15 @@
           </div>
         </div>
 
-        <div class="submit-container">
-          <button class="submit-btn" type="submit">
-            
-            Update Sheets
-          </button>
-        </div>
+      <div class="submit-container">
+        <button class="submit-btn" type="submit">
+          Log Data
+        </button>
+        <br>
+        <button class="view-sheet-btn" type="button" onclick="window.open('https://docs.google.com/spreadsheets/d/1vRT28aM7BqqwEkDrKII0QzgshLTuR6NTodgvDRrc2xE/edit?usp=sharing', '_blank')">
+          <i class="fas fa-table"></i>&nbsp;&nbsp;View Sheet
+        </button>
+      </div>
       </form>
     </div>
   </div>
