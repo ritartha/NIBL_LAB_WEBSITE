@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Gallery - NIBL</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="index.html">
+        <i class="fas fa-atom"></i>&nbsp;&nbsp;NIBL
+      </a>
+      <a role="button" class="navbar-burger" id="navbarBurger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+    </div>
+
+    <div id="navbarMenu" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="index.html">
+          <i class="fas fa-home"></i>&nbsp;Home
+        </a>
+        <a class="navbar-item" href="beam-time.html">
+          <i class="fas fa-calendar-alt"></i>&nbsp;Beam-Time Request
+        </a>
+        <a class="navbar-item" href="logging.html">
+          <i class="fas fa-clipboard-list"></i>&nbsp;Logging
+        </a>
+        <a class="navbar-item" href="members.html">
+          <i class="fas fa-users"></i>&nbsp;Members
+        </a>
+        <a class="navbar-item active" href="gallery.html">
+          <i class="fas fa-images"></i>&nbsp;Photo Gallery
+        </a>
+        <a class="navbar-item" href="about.html">
+          <i class="fas fa-info-circle"></i>&nbsp;About
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Photo Gallery Page Content -->
+  <div class="page-content">
+    <div class="content-container">
+      <div class="hero-section">
+        <h1 class="hero-title">Photo Gallery</h1>
+        <p class="hero-subtitle">Laboratory facilities and research activities</p>
+      </div>
+      
+      <!-- Gallery Categories -->
+      <div class="gallery-categories">
+        <button class="category-btn active" data-category="all">All Photos</button>
+        <button class="category-btn" data-category="facility">Laboratory Facility</button>
+        <button class="category-btn" data-category="equipment">Equipment & Instruments</button>
+        <button class="category-btn" data-category="research">Research Activities</button>
+        <button class="category-btn" data-category="team">Team Events</button>
+      </div>
+
+      <!-- Photo Grid -->
+      <div class="photo-grid" id="photoGrid">
+        <!-- Laboratory Facility Photos -->
+        <div class="photo-item" data-category="facility">
+          <div class="photo-placeholder">
+            <i class="fas fa-building"></i>
+            <div class="photo-info">
+              <h4>Main Laboratory Hall</h4>
+              <p>Primary research facility housing the 400 KeV accelerator system</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="photo-item" data-category="facility">
+          <div class="photo-placeholder">
+            <i class="fas fa-cogs"></i>
+            <div class="photo-info">
+              <h4>Control Room</h4>
+              <p>Advanced control systems for beam operation and monitoring</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="photo-item" data-category="facility">
+          <div class="photo-placeholder">
+            <i class="fas fa-shield-alt"></i>
+            <div class="photo-info">
+              <h4>Safety Systems</h4>
+              <p>Comprehensive radiation safety and monitoring systems</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Equipment & Instruments -->
+        <div class="photo-item" data-category="equipment">
+          <div class="photo-placeholder">
+            <i class="fas fa-bolt"></i>
+            <div class="photo-info">
+              <h4>400 KeV Accelerator</h4>
+              <p>Main ion beam acceleration system with precision control</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="photo-item" data-category="equipment">
+          <div class="photo-placeholder">
+            <i class="fas fa-crosshairs"></i>
+            <div class="photo-info">
+              <h4>Beam Diagnostic System</h4>
+              <p>Real-time beam characterization and monitoring equipment</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="photo-item" data-category="equipment">
+          <div class="photo-placeholder">
+            <i class="fas fa-microscope"></i>
+            <div class="photo-info">
+              <h4>Analysis Chamber</h4>
+              <p>Sample analysis and material characterization setup</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="photo-item" data-category="equipment">
+          <div class="photo-placeholder">
+            <i class="fas fa-desktop"></i>
+            <div class="photo-info">
+              <h4>Data Acquisition System</h4>
+              <p>Advanced computing and data logging infrastructure</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Research Activities -->
+        <div class="photo-item" data-category="research">
+          <div class="photo-placeholder">
+            <i class="fas fa-atom"></i>
+            <div class="photo-info">
+              <h4>Ion Beam Experiments</h4>
+              <p>Ongoing research in ion-matter interactions</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="photo-item" data-category="research">
+          <div class="photo-placeholder">
+            <i class="fas fa-flask"></i>
+            <div class="photo-info">
+              <h4>Sample Preparation</h4>
+              <p>Material sample preparation for beam analysis</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="photo-item" data-category="research">
+          <div class="photo-placeholder">
+            <i class="fas fa-chart-line"></i>
+            <div class="photo-info">
+              <h4>Data Analysis</h4>
+              <p>Research data processing and interpretation</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Team Events -->
+        <div class="photo-item" data-category="team">
+          <div class="photo-placeholder">
+            <i class="fas fa-users"></i>
+            <div class="photo-info">
+              <h4>Team Meeting</h4>
+              <p>Regular research progress discussions and planning</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="photo-item" data-category="team">
+          <div class="photo-placeholder">
+            <i class="fas fa-graduation-cap"></i>
+            <div class="photo-info">
+              <h4>Training Session</h4>
+              <p>Safety training and equipment operation workshops</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="photo-item" data-category="team">
+          <div class="photo-placeholder">
+            <i class="fas fa-handshake"></i>
+            <div class="photo-info">
+              <h4>Collaboration Meeting</h4>
+              <p>Inter-institutional research collaboration discussions</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="photo-item" data-category="team">
+          <div class="photo-placeholder">
+            <i class="fas fa-trophy"></i>
+            <div class="photo-info">
+              <h4>Achievement Celebration</h4>
+              <p>Celebrating research milestones and publications</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upload Section -->
+      <div class="upload-section">
+        <h2 class="section-title">
+          <i class="fas fa-cloud-upload-alt"></i>
+          Add New Photos
+        </h2>
+        <div class="upload-area" id="uploadArea">
+          <div class="upload-content">
+            <i class="fas fa-images"></i>
+            <h4>Upload Laboratory Photos</h4>
+            <p>Drag and drop images here or click to browse</p>
+            <input type="file" id="fileInput" multiple accept="image/*" style="display: none;">
+            <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+              <i class="fas fa-plus"></i> Choose Files
+            </button>
+          </div>
+        </div>
+        <div class="upload-guidelines">
+          <h4>Upload Guidelines: </h4>
+          <ul>
+            <li>Maximum file size: 5MB per image</li>
+            <li>Supported formats: JPG, PNG, WebP</li>
+            <li>Please add descriptive titles and categories</li>
+            <li>Ensure proper permissions for laboratory photos</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Photo Modal -->
+  <div id="photoModal" class="photo-modal">
+    <div class="modal-content-photo">
+      <span class="close-modal">&times;</span>
+      <img id="modalImage" src="" alt="">
+      <div class="modal-info">
+        <h3 id="modalTitle"></h3>
+        <p id="modalDescription"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <style>
+    .gallery-categories {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .category-btn {
+      background:  rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 25px;
+      color: rgba(255, 255, 255, 0.8);
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      text-transform:  uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .category-btn:hover,
+    .category-btn.active {
+      background: var(--success-gradient);
+      border-color: transparent;
+      color:  white;
+      transform: translateY(-2px);
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .photo-item {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .photo-item:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .photo-placeholder {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      text-align: center;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content:  center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .photo-placeholder::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:  linear-gradient(135deg, 
+        rgba(79, 172, 254, 0.1) 0%, 
+        rgba(118, 75, 162, 0.1) 100%);
+      transition: all 0.3s ease;
+    }
+
+    .photo-item:hover .photo-placeholder::before {
+      background: linear-gradient(135deg, 
+        rgba(79, 172, 254, 0.2) 0%, 
+        rgba(118, 75, 162, 0.2) 100%);
+    }
+
+    .photo-placeholder i {
+      font-size: 4rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 1rem;
+      z-index: 2;
+      position: relative;
+    }
+
+    .photo-info {
+      z-index: 2;
+      position:  relative;
+    }
+
+    .photo-info h4 {
+      color:  white;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .photo-info p {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
+
+    .upload-section {
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .upload-area {
+      background: rgba(255, 255, 255, 0.02);
+      border: 2px dashed rgba(255, 255, 255, 0.3);
+      border-radius: 16px;
+      padding:  3rem;
+      text-align:  center;
+      margin: 2rem 0;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .upload-area:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: #4facfe;
+    }
+
+    .upload-content i {
+      font-size: 3rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 1rem;
+    }
+
+    .upload-content h4 {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .upload-content p {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 1.5rem;
+    }
+
+    .upload-btn {
+      background:  var(--success-gradient);
+      border: none;
+      border-radius: 25px;
+      color: white;
+      padding: 0.75rem 2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .upload-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+    }
+
+    .upload-guidelines {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+
+    .upload-guidelines h4 {
+      color: white;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .upload-guidelines ul {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.8;
+      padding-left: 1.5rem;
+    }
+
+    .upload-guidelines li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Photo Modal */
+    .photo-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left:  0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+    }
+
+    .modal-content-photo {
+      position: relative;
+      margin: 5% auto;
+      padding: 2rem;
+      width: 90%;
+      max-width:  800px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      text-align: center;
+    }
+
+    .close-modal {
+      color: white;
+      float:  right;
+      font-size: 2rem;
+      font-weight: bold;
+      cursor: pointer;
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+    }
+
+    .close-modal:hover {
+      color: #4facfe;
+    }
+
+    #modalImage {
+      max-width: 100%;
+      max-height: 60vh;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .modal-info h3 {
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-info p {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+    }
+
+    /* Filter Animation */
+    .photo-item {
+      opacity: 1;
+      transition: all 0.3s ease;
+    }
+
+    .photo-item.hidden {
+      opacity: 0;
+      transform: scale(0.8);
+      pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+      .photo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-categories {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .category-btn {
+        width: 200px;
+      }
+
+      .upload-area {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+
+  <script>
+    // Gallery filtering functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const categoryBtns = document.querySelectorAll('.category-btn');
+      const photoItems = document.querySelectorAll('.photo-item');
+      const modal = document.getElementById('photoModal');
+      const modalImage = document.getElementById('modalImage');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalDescription = document.getElementById('modalDescription');
+      const closeModal = document.querySelector('.close-modal');
+
+      // Category filtering
+      categoryBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const category = this.getAttribute('data-category');
+          
+          // Update active button
+          categoryBtns.forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Filter photos
+          photoItems.forEach(item => {
+            const itemCategory = item.getAttribute('data-category');
+            
+            if (category === 'all' || itemCategory === category) {
+              item.classList.remove('hidden');
+            } else {
+              item.classList.add('hidden');
+            }
+          });
+        });
+      });
+
+      // Photo modal functionality
+      photoItems.forEach(item => {
+        item.addEventListener('click', function() {
+          const title = this.querySelector('.photo-info h4').textContent;
+          const description = this.querySelector('.photo-info p').textContent;
+          
+          modalTitle.textContent = title;
+          modalDescription.textContent = description;
+          
+          // For demo purposes, using a placeholder image
+          modalImage.src = 'https://via.placeholder.com/600x400/4facfe/ffffff?text=' + encodeURIComponent(title);
+          modalImage.alt = title;
+          
+          modal.style.display = 'block';
+        });
+      });
+
+      // Close modal functionality
+      closeModal.addEventListener('click', function() {
+        modal.style.display = 'none';
+      });
+
+      window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+
+      // File upload functionality
+      const fileInput = document.getElementById('fileInput');
+      const uploadArea = document.getElementById('uploadArea');
+
+      // Drag and drop functionality
+      uploadArea.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        uploadArea.style.background = 'rgba(79, 172, 254, 0.1)';
+      });
+
+      uploadArea.addEventListener('dragleave', function(e) {
+        e.preventDefault();
+        uploadArea.style.background = 'rgba(255, 255, 255, 0.02)';
+      });
+
+      uploadArea.addEventListener('drop', function(e) {
+        e.preventDefault();
+        uploadArea.style.background = 'rgba(255, 255, 255, 0.02)';
+        
+        const files = e.dataTransfer.files;
+        handleFiles(files);
+      });
+
+      fileInput.addEventListener('change', function() {
+        handleFiles(this.files);
+      });
+
+      function handleFiles(files) {
+        Array.from(files).forEach(file => {
+          if (file.type.startsWith('image/')) {
+            // Here you would typically upload to a server
+            console.log('Would upload:', file.name);
+            
+            // Show success message (replace with actual upload logic)
+            alert(`Photo "${file.name}" ready for upload!\n(Upload functionality would be implemented here)`);
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>

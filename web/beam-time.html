@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beam-Time Request - NIBL</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="index.html">
+        <i class="fas fa-atom"></i>&nbsp;&nbsp;NIBL
+      </a>
+      <a role="button" class="navbar-burger" id="navbarBurger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+    </div>
+
+    <div id="navbarMenu" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="index.html">
+          <i class="fas fa-home"></i>&nbsp;Home
+        </a>
+        <a class="navbar-item active" href="beam-time.html">
+          <i class="fas fa-calendar-alt"></i>&nbsp;Beam-Time Request
+        </a>
+        <a class="navbar-item" href="logging.html">
+          <i class="fas fa-clipboard-list"></i>&nbsp;Logging
+        </a>
+        <a class="navbar-item" href="members.html">
+          <i class="fas fa-users"></i>&nbsp;Members
+        </a>
+        <a class="navbar-item" href="gallery.html">
+          <i class="fas fa-images"></i>&nbsp;Photo Gallery
+        </a>
+        <a class="navbar-item" href="about.html">
+          <i class="fas fa-info-circle"></i>&nbsp;About
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Beam-Time Request Page Content -->
+  <div class="page-content">
+    <div class="content-container">
+      <div class="hero-section">
+        <h1 class="hero-title">Beam-Time Request</h1>
+        <p class="hero-subtitle">Submit your beam-time allocation request</p>
+      </div>
+      
+      <!-- Request Process -->
+      <div class="process-section">
+        <h2 class="section-title">
+          <i class="fas fa-route"></i>
+          Request Process
+        </h2>
+        <div class="process-grid">
+          <div class="process-step">
+            <div class="step-number">1</div>
+            <h4>Submit Application</h4>
+            <p>Fill out the beam-time request form with your research details</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">2</div>
+            <h4>Review Process</h4>
+            <p>Technical review by NIBL committee</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">3</div>
+            <h4>Scheduling</h4>
+            <p>Approved requests are scheduled based on availability</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">4</div>
+            <h4>Confirmation</h4>
+            <p>Receive confirmation and preparation guidelines</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Beam-Time Request Form -->
+      <div class="form-section">
+        <form id="beamTimeForm" class="beam-time-form">
+          <!-- Personal Details Section -->
+          <div class="form-section-header">
+            <i class="fas fa-user"></i>
+            <h3>Personal Details</h3>
+          </div>
+          
+          <div class="form-grid">
+            <div class="form-field">
+              <label class="form-label">Full Name *</label>
+              <input type="text" id="fullName" class="form-input" placeholder="Enter your full name" required>
+            </div>
+            
+            <div class="form-field">
+              <label class="form-label">Role *</label>
+              <select id="role" class="form-select" required>
+                <option value="" disabled selected>Select your role</option>
+                <option value="Student">Student</option>
+                <option value="Researcher">Researcher</option>
+                <option value="Faculty">Faculty</option>
+                <option value="Scientist">Scientist</option>
+              </select>
+            </div>
+            
+            <div class="form-field">
+              <label class="form-label">Affiliation *</label>
+              <input type="text" id="affiliation" class="form-input" placeholder="Institution/Organization name" required>
+            </div>
+            
+            <div class="form-field">
+              <label class="form-label">Reference (Optional)</label>
+              <input type="text" id="reference" class="form-input" placeholder="Reference person/supervisor">
+            </div>
+            
+            <div class="form-field">
+              <label class="form-label">Email Address *</label>
+              <div class="input-with-verification">
+                <input type="email" id="email" class="form-input" placeholder="your.email@example.com" required>
+                <button type="button" id="verifyEmail" class="verify-btn">
+                  <i class="fas fa-shield-alt"></i> Verify
+                </button>
+              </div>
+              <div id="emailOTPSection" class="otp-section" style="display: none;">
+                <input type="text" id="emailOTP" class="otp-input" placeholder="Enter 6-digit OTP" maxlength="6">
+                <button type="button" id="confirmEmailOTP" class="confirm-btn">Confirm</button>
+                <span class="verification-status" id="emailStatus"></span>
+              </div>
+            </div>
+            
+            <div class="form-field">
+              <label class="form-label">Phone Number *</label>
+              <div class="input-with-verification">
+                <input type="tel" id="phone" class="form-input" placeholder="+91 XXXXX XXXXX" required>
+                <button type="button" id="verifyPhone" class="verify-btn">
+                  <i class="fas fa-shield-alt"></i> Verify
+                </button>
+              </div>
+              <div id="phoneOTPSection" class="otp-section" style="display: none;">
+                <input type="text" id="phoneOTP" class="otp-input" placeholder="Enter 6-digit OTP" maxlength="6">
+                <button type="button" id="confirmPhoneOTP" class="confirm-btn">Confirm</button>
+                <span class="verification-status" id="phoneStatus"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Beam Type Details Section -->
+          <div class="form-section-header">
+            <i class="fas fa-atom"></i>
+            <h3>Beam Requirements</h3>
+          </div>
+          
+          <div class="form-grid">
+            <div class="form-field">
+              <label class="form-label">Beam Energy Required (KeV) *</label>
+              <input type="number" id="beamEnergy" class="form-input" placeholder="Enter energy in KeV" max="400" required>
+              <div id="energyError" class="error-message" style="display: none;">
+                Energy cannot exceed 400 KeV
+              </div>
+            </div>
+            
+            <div class="form-field">
+              <label class="form-label">Beam Current (µA) *</label>
+              <input type="number" id="beamCurrent" class="form-input" placeholder="Enter current in µA" step="0.1" required>
+            </div>
+            
+            <div class="form-field">
+              <label class="form-label">Source Element *</label>
+              <input type="text" id="sourceElement" class="form-input" placeholder="e.g., H+, He+, Ar+" required>
+            </div>
+            
+            <div class="form-field">
+              <label class="form-label">Sample Details *</label>
+              <input type="text" id="sampleDetails" class="form-input" placeholder="Sample material/composition" required>
+            </div>
+          </div>
+
+          <!-- Schedule & Accommodation Section -->
+          <div class="form-section-header">
+            <i class="fas fa-calendar-alt"></i>
+            <h3>Schedule & Accommodation</h3>
+          </div>
+          
+          <div class="form-grid">
+            <div class="form-field full-width">
+              <label class="form-label">Tentative Date *</label>
+              <input type="date" id="tentativeDate" class="form-input" required>
+              <div class="date-note">
+                <i class="fas fa-info-circle"></i>
+                Actual dates will be provided based on availability
+              </div>
+            </div>
+            
+            <div class="form-field">
+              <label class="form-label">Accommodation Required</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="accommodationRequired">
+                  <span class="checkmark"></span>
+                  Yes, I need accommodation
+                </label>
+              </div>
+            </div>
+            
+            <div class="form-field" id="accommodationPeopleField" style="display: none;">
+              <label class="form-label">Number of People *</label>
+              <input type="number" id="accommodationPeople" class="form-input" placeholder="Enter number of people" min="1" max="10">
+            </div>
+          </div>
+
+          <!-- Dynamic Accommodation Details -->
+          <div id="accommodationDetailsSection" style="display: none;">
+            <div class="form-section-header">
+              <i class="fas fa-users"></i>
+              <h3>Accommodation Details</h3>
+            </div>
+            <div id="accommodationDetails" class="form-grid">
+              <!-- Dynamic fields will be added here -->
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="submit-section">
+            <button type="submit" class="submit-btn" id="submitBtn" disabled>
+              <i class="fas fa-paper-plane"></i>
+              Submit Beam-Time Request
+            </button>
+            <div class="submit-note">
+              <i class="fas fa-info-circle"></i>
+              Please verify both email and phone before submitting
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+    <div class="spinner"></div>
+    <div class="loading-text">Submitting your request...</div>
+  </div>
+
+  <!-- Success Modal -->
+  <div id="successModal" class="modal">
+    <div class="modal-content success-modal">
+      <div class="success-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h3>Request Submitted Successfully!</h3>
+      <p>Your beam-time request has been submitted. You will receive a confirmation email shortly.</p>
+      <button class="close-btn" onclick="closeSuccessModal()">Close</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <style>
+    .process-section {
+      margin:  3rem 0;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .process-step {
+      background:  rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .process-step:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: var(--success-gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color:  white;
+      margin: 0 auto 1rem auto;
+    }
+
+    .process-step h4 {
+      color:  white;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .process-step p {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+    }
+
+    .form-section {
+      margin-top: 4rem;
+    }
+
+    .beam-time-form {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 25px;
+      padding: 3rem;
+      margin: 2rem 0;
+    }
+
+    .form-section-header {
+      display: flex;
+      align-items: center;
+      margin: 3rem 0 2rem 0;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .form-section-header:first-child {
+      margin-top: 0;
+    }
+
+    .form-section-header i {
+      font-size: 1.5rem;
+      color: #4facfe;
+      margin-right: 1rem;
+    }
+
+    .form-section-header h3 {
+      color:  white;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-field.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-label {
+      color: rgba(255, 255, 255, 0.9);
+      font-weight:  600;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-input, .form-select {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus, .form-select:focus {
+      outline: none;
+      border-color: #4facfe;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 20px rgba(79, 172, 254, 0.3);
+    }
+
+    .form-input::placeholder {
+      color:  rgba(255, 255, 255, 0.5);
+    }
+
+    .form-select option {
+      background: #2c3e50;
+      color: white;
+    }
+
+    .input-with-verification {
+      display: flex;
+      gap: 0.5rem;
+      align-items: stretch;
+    }
+
+    .input-with-verification .form-input {
+      flex: 1;
+    }
+
+  .verify-btn {
+    background: linear-gradient(135deg, #74b9ff 0%, #00cec9 100%);
+    border: none;
+    border-radius: 12px;
+    color:  white;
+    padding: 0 1.5rem;
+    font-weight:  600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .verify-btn:hover {
+    background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(116, 185, 255, 0.4);
+  }
+
+    .verify-btn:disabled {
+      background: rgba(255, 255, 255, 0.2);
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .otp-section {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      margin-top: 0.5rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+    }
+
+    .otp-input {
+      flex:  1;
+      padding: 0.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      text-align: center;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+    }
+
+    .confirm-btn {
+      background: #00f2fe;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition:  all 0.3s ease;
+    }
+
+    .confirm-btn:hover {
+      background: #4facfe;
+    }
+
+    .verification-status {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-left: 0.5rem;
+    }
+
+    .verification-status.verified {
+      color: #00f2fe;
+    }
+
+    .verification-status.error {
+      color: #ff6b6b;
+    }
+
+    .error-message {
+      color: #ff6b6b;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      background:  rgba(255, 107, 107, 0.1);
+      border-radius:  8px;
+    }
+
+    .date-note {
+      display: flex;
+      align-items: center;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .date-note i {
+      margin-right: 0.5rem;
+      color: #4facfe;
+    }
+
+    .checkbox-group {
+      margin-top: 0.5rem;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1rem;
+    }
+
+    .checkbox-label input[type="checkbox"] {
+      margin-right: 1rem;
+      width: 20px;
+      height: 20px;
+      accent-color: #4facfe;
+    }
+
+    .submit-section {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 2px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .submit-btn {
+      background: var(--success-gradient);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 1.2rem 3rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+    }
+
+    .submit-btn:hover:not(:disabled) {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(79, 172, 254, 0.6);
+    }
+
+    .submit-btn:disabled {
+      background:  rgba(255, 255, 255, 0.2);
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .submit-note {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+
+    .submit-note i {
+      color: #4facfe;
+      margin-right: 0.5rem;
+    }
+
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-top:  4px solid #4facfe;
+      border-radius:  50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+
+    .loading-text {
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    @keyframes spin {
+      0% { transform:  rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background:  rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1001;
+    }
+
+    .success-modal {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      padding: 3rem;
+      text-align: center;
+      max-width: 400px;
+      color: white;
+    }
+
+    .success-icon {
+      font-size: 4rem;
+      color: #00f2fe;
+      margin-bottom:  1rem;
+    }
+
+    .success-modal h3 {
+      font-size:  1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .success-modal p {
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 2rem;
+    }
+
+    .close-btn {
+      background: var(--success-gradient);
+      border: none;
+      border-radius: 25px;
+      color: white;
+      padding: 0.8rem 2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .close-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .beam-time-form {
+        padding: 2rem 1rem;
+      }
+
+      .input-with-verification {
+        flex-direction: column;
+      }
+
+      .otp-section {
+        flex-direction:  column;
+        gap: 1rem;
+      }
+    }
+
+    /* Accommodation Details Styling */
+.person-field {
+  grid-column: 1 / -1; /* Full width */
+}
+
+.person-inputs {
+  display:  grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.person-inputs .form-input,
+.person-inputs .form-select {
+  margin: 0;
+}
+
+/* Update form-grid for accommodation section to use 2 columns */
+#accommodationDetailsSection .form-grid {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+/* Mobile responsiveness */
+@media (max-width:  768px) {
+  .person-inputs {
+    grid-template-columns:  1fr;
+    gap: 1rem;
+  }
+  
+  #accommodationDetailsSection .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Form elements
+      const beamTimeForm = document.getElementById('beamTimeForm');
+      const accommodationCheckbox = document.getElementById('accommodationRequired');
+      const accommodationPeopleField = document.getElementById('accommodationPeopleField');
+      const accommodationPeopleInput = document.getElementById('accommodationPeople');
+      const accommodationDetailsSection = document.getElementById('accommodationDetailsSection');
+      const accommodationDetails = document.getElementById('accommodationDetails');
+      const submitBtn = document.getElementById('submitBtn');
+      
+      // Verification states
+      let emailVerified = false;
+      let phoneVerified = false;
+      
+      // Discord webhook URL (replace with your actual webhook)
+      const discordWebhookURL = "https://discordapp.com/api/webhooks/YOUR_WEBHOOK_ID/YOUR_WEBHOOK_TOKEN";
+      
+      // Google Sheets webhook URL (replace with your actual script URL)
+      const sheetsWebhookURL = "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
+
+      // Accommodation checkbox handler
+      accommodationCheckbox.addEventListener('change', function() {
+        if (this.checked) {
+          accommodationPeopleField.style.display = 'block';
+          accommodationPeopleInput.required = true;
+        } else {
+          accommodationPeopleField.style.display = 'none';
+          accommodationDetailsSection.style.display = 'none';
+          accommodationPeopleInput.required = false;
+          accommodationPeopleInput.value = '';
+          accommodationDetails.innerHTML = '';
+        }
+        updateSubmitButton();
+      });
+
+      // Number of people change handler
+      accommodationPeopleInput.addEventListener('input', function() {
+        const numPeople = parseInt(this.value) || 0;
+        
+        if (numPeople > 0 && numPeople <= 10) {
+          accommodationDetailsSection.style.display = 'block';
+          generateAccommodationFields(numPeople);
+        } else {
+          accommodationDetailsSection.style.display = 'none';
+          accommodationDetails.innerHTML = '';
+        }
+      });
+
+      // Generate dynamic accommodation fields
+      // Generate dynamic accommodation fields
+      function generateAccommodationFields(numPeople) {
+        accommodationDetails.innerHTML = '';
+        
+        for (let i = 1; i <= numPeople; i++) {
+          const personDiv = document.createElement('div');
+          personDiv.className = 'form-field person-field';
+          personDiv.innerHTML = `
+            <label class="form-label">Person ${i} Details *</label>
+            <div class="person-inputs">
+              <input type="text" class="form-input accommodation-name" placeholder="Full name" required>
+              <select class="form-select accommodation-role" required>
+                <option value="" disabled selected>Select role</option>
+                <option value="Student">Student</option>
+                <option value="Researcher">Researcher</option>
+                <option value="Faculty">Faculty</option>
+                <option value="Scientist">Scientist</option>
+                <option value="Technical Staff">Technical Staff</option>
+              </select>
+            </div>
+          `;
+          
+          accommodationDetails.appendChild(personDiv);
+        }
+      }
+
+      // Beam energy validation
+      document.getElementById('beamEnergy').addEventListener('input', function() {
+        const energy = parseFloat(this.value);
+        const errorDiv = document.getElementById('energyError');
+        
+        if (energy > 400) {
+          errorDiv.style.display = 'block';
+          this.style.borderColor = '#ff6b6b';
+        } else {
+          errorDiv.style.display = 'none';
+          this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+        }
+        updateSubmitButton();
+      });
+
+      // Email verification
+      document.getElementById('verifyEmail').addEventListener('click', function() {
+        const email = document.getElementById('email').value;
+        if (!email || !isValidEmail(email)) {
+          alert('Please enter a valid email address');
+          return;
+        }
+        
+        // Simulate OTP sending
+        document.getElementById('emailOTPSection').style.display = 'flex';
+        this.disabled = true;
+        this.textContent = 'OTP Sent';
+        
+        // Generate random OTP for demo (in real implementation, this would be sent to email)
+        window.emailOTP = Math.floor(100000 + Math.random() * 900000).toString();
+        console.log('Email OTP:', window.emailOTP); // For demo purposes
+        alert(`Demo: Email OTP is ${window.emailOTP}`);
+      });
+
+      // Phone verification
+      document.getElementById('verifyPhone').addEventListener('click', function() {
+        const phone = document.getElementById('phone').value;
+        if (! phone) {
+          alert('Please enter a phone number');
+          return;
+        }
+        
+        // Simulate OTP sending
+        document.getElementById('phoneOTPSection').style.display = 'flex';
+        this.disabled = true;
+        this.textContent = 'OTP Sent';
+        
+        // Generate random OTP for demo
+        window.phoneOTP = Math.floor(100000 + Math.random() * 900000).toString();
+        console.log('Phone OTP:', window.phoneOTP); // For demo purposes
+        alert(`Demo: Phone OTP is ${window.phoneOTP}`);
+      });
+
+      // Email OTP confirmation
+      document.getElementById('confirmEmailOTP').addEventListener('click', function() {
+        const enteredOTP = document.getElementById('emailOTP').value;
+        const statusDiv = document.getElementById('emailStatus');
+        
+        if (enteredOTP === window.emailOTP) {
+          emailVerified = true;
+          statusDiv.textContent = '✓ Verified';
+          statusDiv.className = 'verification-status verified';
+          this.disabled = true;
+        } else {
+          statusDiv.textContent = '✗ Invalid OTP';
+          statusDiv.className = 'verification-status error';
+        }
+        updateSubmitButton();
+      });
+
+      // Phone OTP confirmation
+      document.getElementById('confirmPhoneOTP').addEventListener('click', function() {
+        const enteredOTP = document.getElementById('phoneOTP').value;
+        const statusDiv = document.getElementById('phoneStatus');
+        
+        if (enteredOTP === window.phoneOTP) {
+          phoneVerified = true;
+          statusDiv.textContent = '✓ Verified';
+          statusDiv.className = 'verification-status verified';
+          this.disabled = true;
+        } else {
+          statusDiv.textContent = '✗ Invalid OTP';
+          statusDiv.className = 'verification-status error';
+        }
+        updateSubmitButton();
+      });
+
+      // Update submit button state
+      function updateSubmitButton() {
+        const beamEnergy = parseFloat(document.getElementById('beamEnergy').value);
+        const energyValid = beamEnergy <= 400 && beamEnergy > 0;
+        
+        if (emailVerified && phoneVerified && energyValid) {
+          submitBtn.disabled = false;
+        } else {
+          submitBtn.disabled = true;
+        }
+      }
+
+      // Form submission
+      beamTimeForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        if (!emailVerified || !phoneVerified) {
+          alert('Please verify both email and phone before submitting');
+          return;
+        }
+        
+        const beamEnergy = parseFloat(document.getElementById('beamEnergy').value);
+        if (beamEnergy > 400) {
+          alert('Beam energy cannot exceed 400 KeV');
+          return;
+        }
+        
+        submitForm();
+      });
+
+      // Submit form data
+      async function submitForm() {
+        document.getElementById('loadingOverlay').style.display = 'flex';
+        
+        const formData = collectFormData();
+        
+        try {
+          // Submit to Google Sheets
+          await fetch(sheetsWebhookURL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+          });
+          
+          // Submit to Discord
+          await fetch(discordWebhookURL, {
+            method: 'POST',
+            headers:  { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              embeds: [{
+                title: "🔬 New Beam-Time Request",
+                description:  createDiscordMessage(formData),
+                color: 0x4facfe,
+                timestamp: new Date().toISOString(),
+                footer: { text: "NIBL Beam-Time Request System" }
+              }]
+            })
+          });
+          
+          document.getElementById('loadingOverlay').style.display = 'none';
+          document.getElementById('successModal').style.display = 'flex';
+          beamTimeForm.reset();
+          
+        } catch (error) {
+          document.getElementById('loadingOverlay').style.display = 'none';
+          alert('Error submitting form. Please try again.');
+          console.error('Submission error:', error);
+        }
+      }
+
+      // Collect form data
+      function collectFormData() {
+        const accommodationPeople = [];
+        if (accommodationCheckbox.checked) {
+          const names = document.querySelectorAll('.accommodation-name');
+          const roles = document.querySelectorAll('.accommodation-role');
+          
+          for (let i = 0; i < names.length; i++) {
+            accommodationPeople.push({
+              name: names[i].value,
+              role: roles[i].value
+            });
+          }
+        }
+        
+        return {
+          fullName: document.getElementById('fullName').value,
+          role: document.getElementById('role').value,
+          affiliation: document.getElementById('affiliation').value,
+          reference: document.getElementById('reference').value,
+          email: document.getElementById('email').value,
+          phone: document.getElementById('phone').value,
+          beamEnergy: document.getElementById('beamEnergy').value,
+          beamCurrent: document.getElementById('beamCurrent').value,
+          sourceElement: document.getElementById('sourceElement').value,
+          sampleDetails: document.getElementById('sampleDetails').value,
+          tentativeDate: document.getElementById('tentativeDate').value,
+          accommodationRequired: accommodationCheckbox.checked,
+          accommodationPeople: accommodationPeople,
+          submissionDate: new Date().toISOString()
+        };
+      }
+
+      // Create Discord message
+      function createDiscordMessage(data) {
+        let message = `**👤 Applicant:** ${data.fullName} (${data.role})\n`;
+        message += `**🏛️ Affiliation:** ${data.affiliation}\n`;
+        if (data.reference) message += `**📋 Reference:** ${data.reference}\n`;
+        message += `**📧 Email:** ${data.email}\n`;
+        message += `**📱 Phone:** ${data.phone}\n\n`;
+        
+        message += `**⚡ Beam Energy:** ${data.beamEnergy} KeV\n`;
+        message += `**🔌 Beam Current:** ${data.beamCurrent} µA\n`;
+        message += `**🧪 Source Element:** ${data.sourceElement}\n`;
+        message += `**🔬 Sample:** ${data.sampleDetails}\n\n`;
+        
+        message += `**📅 Requested Date:** ${data.tentativeDate}\n`;
+        message += `**🏠 Accommodation:** ${data.accommodationRequired ? 'Yes' : 'No'}\n`;
+        
+        if (data.accommodationRequired && data.accommodationPeople.length > 0) {
+          message += `**👥 Accommodation Details:**\n`;
+          data.accommodationPeople.forEach((person, index) => {
+            message += `${index + 1}.${person.name} - ${person.role}\n`;
+          });
+        }
+        
+        return message;
+      }
+
+      // Utility functions
+      function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      // Set minimum date to today
+      document.getElementById('tentativeDate').min = new Date().toISOString().split('T')[0];
+    });
+
+    // Close success modal
+    function closeSuccessModal() {
+      document.getElementById('successModal').style.display = 'none';
+      // Reset verification states
+      emailVerified = false;
+      phoneVerified = false;
+      document.getElementById('submitBtn').disabled = true;
+    }
+  </script>
+</body>
+</html>

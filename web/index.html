@@ -1,0 +1,96 @@
+<! DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NIBL - Nuclear Instrumentation & Beam Laboratory</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="index.html">
+        <i class="fas fa-atom"></i>&nbsp;&nbsp;NIBL
+      </a>
+      <a role="button" class="navbar-burger" id="navbarBurger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+    </div>
+
+    <div id="navbarMenu" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item active" href="index.html">
+          <i class="fas fa-home"></i>&nbsp;Home
+        </a>
+        <a class="navbar-item" href="beam-time.html">
+          <i class="fas fa-calendar-alt"></i>&nbsp;Beam-Time Request
+        </a>
+        <a class="navbar-item" href="logging.html">
+          <i class="fas fa-clipboard-list"></i>&nbsp;Logging
+        </a>
+        <a class="navbar-item" href="members.html">
+          <i class="fas fa-users"></i>&nbsp;Members
+        </a>
+        <a class="navbar-item" href="gallery.html">
+          <i class="fas fa-images"></i>&nbsp;Photo Gallery
+        </a>
+        <a class="navbar-item" href="about.html">
+          <i class="fas fa-info-circle"></i>&nbsp;About
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Home Page Content -->
+  <div class="page-content">
+    <div class="content-container">
+      <div class="hero-section">
+        <h1 class="hero-title">Niser Ion Beam Laboratory</h1>
+        <p class="hero-subtitle">Advanced Research Facility for Nuclear Physics & Ion Beam Applications</p>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-atom"></i></div>
+            <h3>400 KeV Accelerator</h3>
+            <p>State-of-the-art ion beam acceleration for nuclear physics research and material analysis.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-microscope"></i></div>
+            <h3>Advanced Analytics</h3>
+            <p>Comprehensive beam characterization and real-time monitoring systems.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+            <h3>Data Logging</h3>
+            <p>Professional logging system with Discord integration and cloud backup.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Recent Updates Section -->
+      <div class="updates-section">
+        <h2 class="section-title">
+          <i class="fas fa-newspaper"></i>
+          Recent Updates
+        </h2>
+        <div class="update-card">
+          <div class="update-date">January 2026</div>
+          <h4>New Data Logging System</h4>
+          <p>Enhanced logging interface with real-time Google sheet integration and cloud backup functionality.</p>
+        </div>
+        <div class="update-card">
+          <div class="update-date">December 2025</div>
+          <h4>Accelerator Maintenance Complete</h4>
+          <p>400 KeV accelerator system maintenance and calibration successfully completed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

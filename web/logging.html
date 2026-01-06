@@ -1,0 +1,229 @@
+<! DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Logging - NIBL</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min. css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="logging-styles.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="index.html">
+        <i class="fas fa-atom"></i>&nbsp;&nbsp;NIBL
+      </a>
+      <a role="button" class="navbar-burger" id="navbarBurger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
+    </div>
+
+    <div id="navbarMenu" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="index.html">
+          <i class="fas fa-home"></i>&nbsp;Home
+        </a>
+        <a class="navbar-item" href="beam-time.html">
+          <i class="fas fa-calendar-alt"></i>&nbsp;Beam-Time Request
+        </a>
+        <a class="navbar-item active" href="logging. html">
+          <i class="fas fa-clipboard-list"></i>&nbsp;Logging
+        </a>
+        <a class="navbar-item" href="members. html">
+          <i class="fas fa-users"></i>&nbsp;Members
+        </a>
+        <a class="navbar-item" href="gallery.html">
+          <i class="fas fa-images"></i>&nbsp;Photo Gallery
+        </a>
+        <a class="navbar-item" href="about. html">
+          <i class="fas fa-info-circle"></i>&nbsp;About
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal is-active">
+    <div class="modal-content">
+      <div class="login-form">
+        <h2 class="login-title">
+          <i class="fas fa-lock"></i><br>
+          Laboratory Access
+        </h2>
+        <form id="loginForm">
+          <div class="login-field">
+            <input type="text" id="username" class="login-input" placeholder="Username" required>
+          </div>
+          <div class="login-field">
+            <input type="password" id="password" class="login-input" placeholder="Password" required>
+          </div>
+          <button type="submit" class="login-btn">
+            <i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Access Logging System
+          </button>
+          <div id="errorMessage" class="error-message" style="display: none;"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logging System (Hidden initially) -->
+  <div id="loggingSystem" class="page-content" style="display: none;">
+    <div class="content-container">
+      <div class="hero-section">
+        <h1 class="hero-title">NIBL Data Logger</h1>
+        <p class="hero-subtitle">400 KeV Accelerator Log Data Recorder</p>
+      </div>
+
+      <form id="beamForm" class="form-container">
+        <!-- Operation Details Section -->
+        <div class="section-header">
+          <i class="fas fa-cogs"></i>
+          <h2 class="section-title">Operation Details</h2>
+        </div>
+
+        <div class="field-group">
+          <div class="custom-field">
+            <label class="custom-label">Operator Name</label>
+            <div class="icon-input">
+              <select id="operator" class="custom-select" required>
+                <option value="" disabled selected>Select Operator</option>
+                <option value="Mr.  Ritartha Chaki">Mr. Ritartha Chaki</option>
+                <option value="Dr. Kalyan Ghosh">Dr.  Kalyan Ghosh</option>
+                <option value="Dr. Haraprasanna Lenka">Dr.  Haraprasanna Lenka</option>
+                <option value="Dr. Pratap Kumar Sahoo">Dr.  Pratap Kumar Sahoo</option>
+              </select>
+              <i class="fas fa-user-tie"></i>
+            </div>
+          </div>
+
+          <div class="custom-field">
+            <label class="custom-label">Energy (KeV)</label>
+            <div class="icon-input">
+              <input class="custom-input" type="number" id="energy" placeholder="Enter energy value" required>
+              <i class="fas fa-bolt"></i>
+            </div>
+          </div>
+
+          <div class="custom-field">
+            <label class="custom-label">Beam Current (µA)</label>
+            <div class="icon-input">
+              <input class="custom-input" type="number" id="current" placeholder="Enter current value" required>
+              <i class="fas fa-wave-square"></i>
+            </div>
+          </div>
+
+          <div class="custom-field">
+            <label class="custom-label">Source Element</label>
+            <div class="icon-input">
+              <input class="custom-input" type="text" id="source" placeholder="Enter source element" required>
+              <i class="fas fa-atom"></i>
+            </div>
+          </div>
+
+          <div class="custom-field">
+            <label class="custom-label">Target Sample</label>
+            <div class="icon-input">
+              <input class="custom-input" type="text" id="target" placeholder="Enter target sample" required>
+              <i class="fas fa-bullseye"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Source Parameters Section -->
+        <div class="section-header">
+          <i class="fas fa-sliders-h"></i>
+          <h2 class="section-title">Source Parameters</h2>
+        </div>
+
+        <div class="field-group">
+          <div class="custom-field">
+            <label class="custom-label">Anode Current (A)</label>
+            <div class="icon-input">
+              <input class="custom-input" type="number" id="anode" step="any" placeholder="0.00" required>
+              <i class="fas fa-plug"></i>
+            </div>
+          </div>
+
+          <div class="custom-field">
+            <label class="custom-label">Filament Current (A)</label>
+            <div class="icon-input">
+              <input class="custom-input" type="number" id="filament" step="any" placeholder="0.00" required>
+              <i class="fas fa-fire"></i>
+            </div>
+          </div>
+
+          <div class="custom-field">
+            <label class="custom-label">Oven Current (A)</label>
+            <div class="icon-input">
+              <input class="custom-input" type="number" id="oven" step="any" placeholder="0.00" required>
+              <i class="fas fa-thermometer-half"></i>
+            </div>
+          </div>
+
+          <div class="custom-field">
+            <label class="custom-label">Gas Control (%)</label>
+            <div class="icon-input">
+              <input class="custom-input" type="number" id="gas" step="any" placeholder="0.00" required>
+              <i class="fas fa-wind"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- User Details Section -->
+        <div class="section-header">
+          <i class="fas fa-user-graduate"></i>
+          <h2 class="section-title">User Details</h2>
+        </div>
+
+        <div class="field-group">
+          <div class="custom-field">
+            <label class="custom-label">User Name</label>
+            <div class="icon-input">
+              <input class="custom-input" type="text" id="username_form" placeholder="Enter your name" required>
+              <i class="fas fa-user"></i>
+            </div>
+          </div>
+
+          <div class="custom-field">
+            <label class="custom-label">User Institute</label>
+            <div class="icon-input">
+              <input class="custom-input" type="text" id="institute" placeholder="Enter institute name" required>
+              <i class="fas fa-university"></i>
+            </div>
+          </div>
+
+          <div class="custom-field">
+            <label class="custom-label">User's Supervisor <span style="opacity: 0.7;">(Optional)</span></label>
+            <div class="icon-input">
+              <input class="custom-input" type="text" id="supervisor" placeholder="Enter supervisor name">
+              <i class="fas fa-user-tie"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="submit-container">
+          <button class="submit-btn" type="submit">
+            <i class="fab fa-discord" style="margin-right: 0.5rem;"></i>
+            Send to Discord
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+    <div class="spinner"></div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="logging-script.js"></script>
+</body>
+</html>
