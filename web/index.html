@@ -171,12 +171,89 @@
         font-size: 0.9rem;
       }
     }
+
+    /* Status Chip Styles */
+.status-chip {
+  position: absolute;
+  
+  top: 20px;
+  right: 20px;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(241, 99, 99, 0.3);
+  backdrop-filter: blur(10px);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap:  0.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Active Status (Green) */
+.status-chip.active {
+  background: linear-gradient(135deg, #00d4aa, #1dd1a1);
+  color: rgb(249, 246, 246);
+}
+
+.status-chip.active i {
+  color: #ffffff;
+  animation: pulse-green 2s infinite;
+}
+
+/* Under Construction Status (Red) */
+.status-chip.under-construction {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: rgb(248, 216, 216);
+}
+
+.status-chip.under-construction i {
+  color: #f4b7b7;
+  animation: pulse-red 2s infinite;
+}
+
+/* Pulse Animations */
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.1); }
+}
+
+@keyframes pulse-red {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity:  0.7; transform: scale(1.1); }
+}
+
+/* Make hero image section relative for positioning */
+.hero-image-section {
+  position: relative; /* Add this if not already present */
+}
+
+/* Mobile Responsive */
+@media (max-width:  768px) {
+  .status-chip {
+    top: 15px;
+    right: 15px;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.8rem;
+  }
+}
   </style>
   <!-- Home Page Content -->
   <div class="page-content">
     <div class="content-container">
-      <div class="hero-section">
+            
+              <div class="hero-section">
+
               <div class="hero-image-section">
+                  <!-- Status Chip - Add this above the image -->
+                              <div class="status-chip">
+              <div class="status-chip.under-construction">
+                <i class="fas fa-circle"></i>
+                <span>🛠️ Website Under Construction 🛠️</span>
+              </div></div>
         <img src="img\accelarator\edited\DJI_0546.jpg" alt="NIBL Laboratory" class="hero-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
         <div class="hero-image-placeholder">
           
@@ -184,7 +261,7 @@
           <p></p>
         </div>
       </div>
-        <h1 class="hero-title">NISER Ion Beam Laboratory<br>[<span style="color: red;"><h2>🛠️ Development Phase 🛠️</h2></span>]</h1>
+        <h1 class="hero-title">NISER Ion Beam Laboratory</h1>
         <p class="hero-subtitle">Advanced Research Facility for Nuclear Physics & Ion Beam Applications</p>
         <div class="feature-grid">
           <div class="feature-card">
@@ -228,5 +305,21 @@
   </div>
 
   <script src="script.js"></script>
+  <script>// Add to your existing script section
+document.addEventListener('DOMContentLoaded', function() {
+  // Set website status here
+  const isWebsiteActive = false; // Change to false for under construction
+  
+  const statusChip = document.querySelector('.status-chip');
+  const statusText = statusChip.querySelector('span');
+  
+  if (isWebsiteActive) {
+    statusChip.className = 'status-chip active';
+    statusText.textContent = 'Website Active ✅';
+  } else {
+    statusChip.className = 'status-chip under-construction';
+    statusText.textContent = 'Website Under Construction 🛠️';
+  }
+});</script>
 </body>
 </html>
