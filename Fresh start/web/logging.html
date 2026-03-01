@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logging - NIBL</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/logging-styles.css">
+  <style>
+    /* View Sheet Button */
+    .view-sheet-btn {
+      background: var(--accent-gradient);
+      border: none;
+      border-radius: 50px;
+      color: var(--text-primary);
+      font-size: 1.2rem;
+      font-weight: 700;
+      padding: 1.5rem 3rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 25%;
+      margin-top: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 8px 25px rgba(238, 90, 36, 0.3);
+    }
+
+    .view-sheet-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(238, 90, 36, 0.5);
+    }
+
+    /* Login Modal */
+    .login-modal {
+      display: flex;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .login-container {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 25px;
+      padding: 3rem;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      position: relative;
+    }
+
+    .login-container h2 {
+      color: white;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .login-container p {
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 2rem;
+    }
+
+    .login-input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .login-input:focus {
+      outline: none;
+      border-color: #4facfe;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .login-input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .login-btn {
+      width: 100%;
+      background: var(--success-gradient);
+      border: none;
+      border-radius: 12px;
+      color: white;
+      padding: 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 0.5rem;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+    }
+
+    .close-modal-btn {
+      position: absolute;
+      top: 1rem; right: 1.5rem;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      background: none;
+      border: none;
+    }
+
+    .close-modal-btn:hover {
+      color: white;
+    }
+
+    .error-msg {
+      color: #ff6b6b;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .view-sheet-btn { width: 80%; }
+    }
+  </style>
+<script src="js/api.js"></script>  
+
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="index.html">
+        <i class="fas fa-atom"></i>&nbsp;&nbsp;NIBL
+      </a>
+      <a role="button" class="navbar-burger" id="navbarBurger">
+        <span></span><span></span><span></span>
+      </a>
+    </div>
+
+    <div id="navbarMenu" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="index.html"><i class="fas fa-home"></i>&nbsp;Home</a>
+        <a class="navbar-item" href="beam-time.html"><i class="fas fa-calendar-alt"></i>&nbsp;Beam-Time Request</a>
+        <a class="navbar-item active" href="logging.html"><i class="fas fa-clipboard-list"></i>&nbsp;Logging</a>
+        <a class="navbar-item" href="members.html"><i class="fas fa-users"></i>&nbsp;Members</a>
+        <a class="navbar-item" href="gallery.html"><i class="fas fa-images"></i>&nbsp;Photo Gallery</a>
+        <a class="navbar-item" href="about.html"><i class="fas fa-info-circle"></i>&nbsp;About</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="login-modal">
+    <div class="login-container">
+      <button class="close-modal-btn" id="closeModalBtn">&times;</button>
+      <h2><i class="fas fa-lock"></i> Login Required</h2>
+      <p>Please authenticate to access the logging system</p>
+      <form id="loginForm">
+        <input type="text" id="username" class="login-input" placeholder="Username" required>
+        <input type="password" id="password" class="login-input" placeholder="Password" required>
+        <button type="submit" class="login-btn">
+          <i class="fas fa-sign-in-alt"></i> Login
+        </button>
+        <div id="errorMessage" class="error-msg">Invalid credentials. Please try again.</div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Logging System (hidden until authenticated) -->
+  <div id="loggingSystem" class="page-content" style="display: none;">
+    <div class="content-container">
+      <div class="hero-section">
+        <h1 class="hero-title">Data Logging System</h1>
+        <p class="hero-subtitle">Accelerator operation logging with real-time tracking</p>
+      </div>
+
+      <!-- Logging form content will be loaded here by logging-script.js -->
+      <div id="loggingFormContainer">
+        <p style="color: rgba(255,255,255,0.7); text-align: center; padding: 2rem;">
+          Loading logging form...
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/logging-script.js"></script>
+
+  <!-- API Integration: Submit logs to backend -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Override the logging form submission to use API
+      const loggingSystem = document.getElementById('loggingSystem');
+
+      // Listen for any form submissions within the logging system
+      loggingSystem.addEventListener('submit', async function(e) {
+        const form = e.target;
+        if (form.id === 'loggingForm' || form.classList.contains('logging-form')) {
+          e.preventDefault();
+
+          const formData = new FormData(form);
+          const data = Object.fromEntries(formData.entries());
+
+          try {
+            await apiPost(API_ENDPOINTS.logs, data);
+            alert('Log entry submitted successfully!');
+            form.reset();
+          } catch (error) {
+            console.log('API not available, using legacy submission:', error.message);
+            // Fallback to original behavior (Google Sheets, etc.)
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

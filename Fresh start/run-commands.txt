@@ -1,0 +1,49 @@
+# 1. Clone your repo fresh
+git clone https://github.com/ritartha/NIBL_LAB_WEBSITE.git
+cd NIBL_LAB_WEBSITE
+
+# 2. Restructure frontend (move files)
+cd web
+mkdir css js
+move styles.css css\styles.css
+move logging-styles.css css\logging-styles.css
+move script.js js\script.js
+move logging-script.js js\logging-script.js
+del "index copy.html"
+del "gallery copy.html"
+cd ..
+
+# 3. ⚠️ IMPORTANT: Now manually do find-and-replace in all HTML files:
+#    href="styles.css"          →  href="css/styles.css"
+#    href="logging-styles.css"  →  href="css/logging-styles.css"
+#    src="script.js"            →  src="js/script.js"
+#    src="logging-script.js"    →  src="js/logging-script.js"
+#    (Use your code editor's global find-and-replace across web/*.html)
+
+# 4. Replace web/js/script.js with the new version above
+
+# 5. Create requirements.txt, .gitignore at project root (from above)
+
+# 6. Create the full backend/ directory with all files above
+
+# 7. Setup Python environment
+python -m venv venv
+
+# Activate (Windows):
+venv\Scripts\activate
+# Activate (Linux/Mac):
+# source venv/bin/activate
+
+# 8. Install packages
+pip install -r requirements.txt
+
+# 9. Initialize Django
+cd backend
+python manage.py makemigrations api
+python manage.py migrate
+python manage.py seed_data
+python manage.py createsuperuser
+#   → Enter admin username/email/password when prompted
+
+# 10. Run the server!
+python manage.py runserver
